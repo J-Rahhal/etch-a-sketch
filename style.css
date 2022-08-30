@@ -1,0 +1,36 @@
+html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+}
+
+#container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    width: auto;
+    display: flex;
+    /* background-color: blue; */
+    border: 10px solid lightskyblue;
+    border-radius: 10px;
+}
+
+.cols {
+    padding: 10px;
+    border: 1px solid gray;
+}
+
+.selected {
+    background-color: black;
+}
