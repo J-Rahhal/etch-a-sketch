@@ -1,7 +1,7 @@
 :root {
     --mouse-x: 0px;
     --mouse-y: 0px;
-  }
+}
 
 html {
     box-sizing: border-box;
@@ -45,9 +45,12 @@ body {
 
 .buttons {
     margin: 25px;
+    display: flex;
 }
 
-.reset, .rainbow {
+.reset,
+.rainbow,
+.color-picker  {
     height: 40px;
     width: auto;
     font-size: 15px;
@@ -58,5 +61,9 @@ body {
 }
 
 .rainbow-colors {
-    background-color:rgb(var(--mouse-x), var(--mouse-y), var(--mouse-y));
+    background-color: rgb(var(--mouse-x), var(--mouse-y), var(--mouse-y));
+}
+
+.color-picker {
+    width: 50px;
 }

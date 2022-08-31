@@ -45,6 +45,17 @@ container.appendChild(buttonsContainer);
 buttonsContainer.appendChild(rainbow);
 container.appendChild(buttonsContainer);
 
+//create color picker
+const colorPicker = document.createElement('input');
+colorPicker.type = "color";
+colorPicker.classList.add("color-picker");
+colorPicker.getElementsByClassName("color-picker");
+
+//add color picker to button container and to main container
+buttonsContainer.appendChild(colorPicker);
+container.appendChild(buttonsContainer);
+
+
 //create row function which will create the row divs
 function createRows(row) {
     for(let i =0; i < row; i++) {
@@ -114,3 +125,19 @@ function  rainbowColors(){
 
   }
 }
+
+
+//create function
+function chooseColor() {
+    let color ='';
+    colorPicker.addEventListener('change', ()=>{
+        color =colorPicker.value;
+        for(let i=0; i<grid_cols.length; i++) {
+            grid_cols[i].addEventListener('mouseover',()=>{
+                grid_cols[i].style.backgroundColor = color;
+            });
+        }
+    });
+}
+
+chooseColor();
