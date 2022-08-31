@@ -93,18 +93,24 @@ draw();
 //create function clear
 function clear() {
     for (let i =0; i<grid_cols.length; i++) {
-        grid_cols[i].classList.remove('selected');
-        grid_cols[i].style.backgroundColor = '#FFFFFF';
-        grid_cols[i].classList.add('selected');
+        grid_cols[i].style ="none";
+        grid_cols[i].classList.remove("selected");
+        grid_cols[i].addEventListener("mouseover", ()=>{
+            grid_cols[i].classList.remove("rainbow-colors");
+            grid_cols[i].classList.add("selected");
+        });
     }
+
 }
 
-//create rainbow colors function
+// create rainbow colors function
 function  rainbowColors(){
-    let color = Math.floor(Math.random() * 255);
     for(let i =0; i < grid_cols.length; i++){
         grid_cols[i].addEventListener("mouseover", ()=>{
-            grid_cols[i].style.backgroundColor = 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')';
+            grid_cols[i].classList.add("rainbow-colors");
+            grid_cols[i].style.setProperty('--mouse-x', Math.floor(Math.random()*255));
+            grid_cols[i].style.setProperty('--mouse-y', Math.floor(Math.random()*255));
     });
+
   }
 }
