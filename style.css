@@ -1,6 +1,7 @@
 :root {
     --mouse-x: 0px;
     --mouse-y: 0px;
+    --color-picker-value:'';
 }
 
 html {
@@ -66,4 +67,8 @@ body {
 
 .color-picker {
     width: 50px;
+}
+
+.colors{
+    background-color: var(--color-picker-value);
 }

@@ -109,6 +109,7 @@ function clear() {
         grid_cols[i].addEventListener("mouseover", ()=>{
             grid_cols[i].classList.remove("rainbow-colors");
             grid_cols[i].classList.add("selected");
+            grid_cols[i].classList.remove('colors');
         });
     }
 
@@ -134,7 +135,8 @@ function chooseColor() {
         color =colorPicker.value;
         for(let i=0; i<grid_cols.length; i++) {
             grid_cols[i].addEventListener('mouseover',()=>{
-                grid_cols[i].style.backgroundColor = color;
+                grid_cols[i].classList.add('colors');
+                grid_cols[i].style.setProperty('--color-picker-value', color);
             });
         }
     });
