@@ -112,6 +112,7 @@ function clear() {
             grid_cols[i].classList.remove('colors');
         });
     }
+    colorPicker.value = '#000000';
 
 }
 
@@ -120,6 +121,7 @@ function  rainbowColors(){
     for(let i =0; i < grid_cols.length; i++){
         grid_cols[i].addEventListener("mouseover", ()=>{
             grid_cols[i].classList.add("rainbow-colors");
+            grid_cols[i].classList.remove('colors');
             grid_cols[i].style.setProperty('--mouse-x', Math.floor(Math.random()*255));
             grid_cols[i].style.setProperty('--mouse-y', Math.floor(Math.random()*255));
     });
@@ -127,19 +129,16 @@ function  rainbowColors(){
   }
 }
 
+//add event Listener to color picker
+colorPicker.addEventListener('change', chooseColor);
 
-//create function
-function chooseColor() {
-    let color ='';
-    colorPicker.addEventListener('change', ()=>{
-        color =colorPicker.value;
-        for(let i=0; i<grid_cols.length; i++) {
-            grid_cols[i].addEventListener('mouseover',()=>{
-                grid_cols[i].classList.add('colors');
-                grid_cols[i].style.setProperty('--color-picker-value', color);
-            });
-        }
-    });
+//create function chooseColor()
+function chooseColor()  {
+    let color =colorPicker.value;
+    for(let i = 0; i <grid_cols.length; i++) {
+        grid_cols[i].addEventListener('mouseover', ()=>{
+            grid_cols[i].classList.add('colors');
+            grid_cols[i].style.setProperty('--color-picker-value', color);
+        });
+    }
 }
-
-chooseColor();

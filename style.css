@@ -1,7 +1,7 @@
 :root {
     --mouse-x: 0px;
     --mouse-y: 0px;
-    --color-picker-value:'';
+    --color-picker-value:'#000000';
 }
 
 html {
