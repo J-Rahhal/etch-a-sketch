@@ -55,6 +55,20 @@ colorPicker.getElementsByClassName("color-picker");
 buttonsContainer.appendChild(colorPicker);
 container.appendChild(buttonsContainer);
 
+//add eraser button
+const eraser = document.createElement("input");
+eraser.type = "button";
+eraser.value = "eraser";
+eraser.classList.add('eraser');
+eraser.getElementsByClassName('eraser');
+
+//add eraser to button container
+buttonsContainer.appendChild(eraser);
+container.appendChild(buttonsContainer);
+
+//add eraser event Listener
+eraser.addEventListener('click',erase);
+
 
 //create row function which will create the row divs
 function createRows(row) {
@@ -110,6 +124,8 @@ function clear() {
             grid_cols[i].classList.remove("rainbow-colors");
             grid_cols[i].classList.add("selected");
             grid_cols[i].classList.remove('colors');
+            grid_cols[i].classList.remove('erase');
+
         });
     }
     colorPicker.value = '#000000';
@@ -122,6 +138,7 @@ function  rainbowColors(){
         grid_cols[i].addEventListener("mouseover", ()=>{
             grid_cols[i].classList.add("rainbow-colors");
             grid_cols[i].classList.remove('colors');
+            grid_cols[i].classList.remove('erase');
             grid_cols[i].style.setProperty('--mouse-x', Math.floor(Math.random()*255));
             grid_cols[i].style.setProperty('--mouse-y', Math.floor(Math.random()*255));
     });
@@ -138,7 +155,20 @@ function chooseColor()  {
     for(let i = 0; i <grid_cols.length; i++) {
         grid_cols[i].addEventListener('mouseover', ()=>{
             grid_cols[i].classList.add('colors');
+            grid_cols[i].classList.remove('erase');
             grid_cols[i].style.setProperty('--color-picker-value', color);
+        });
+    }
+}
+
+//create function erase
+function erase(){
+    let color ="#FFFFFF";
+    for(let i=0; i<grid_cols.length; i++){
+        grid_cols[i].addEventListener("mouseover",()=>{
+
+            grid_cols[i].classList.add('erase');
+            grid_cols[i].style.setProperty('--eraser-color', color);
         });
     }
 }

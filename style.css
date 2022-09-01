@@ -2,6 +2,7 @@
     --mouse-x: 0px;
     --mouse-y: 0px;
     --color-picker-value:'#000000';
+    --eraser-color: '#FFFFFF';
 }
 
 html {
@@ -51,7 +52,8 @@ body {
 
 .reset,
 .rainbow,
-.color-picker  {
+.color-picker,
+.eraser  {
     height: 40px;
     width: auto;
     font-size: 15px;
@@ -71,4 +73,8 @@ body {
 
 .colors{
     background-color: var(--color-picker-value);
+}
+
+.erase {
+    background-color: var(--eraser-color);
 }
