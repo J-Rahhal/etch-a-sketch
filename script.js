@@ -12,7 +12,10 @@ grid_container.getElementsByClassName('grid');
 const grid_rows = document.getElementsByClassName('rows');
 //select columns
 const grid_cols = document.getElementsByClassName('cols');
-
+//create heading
+const heading = document.createElement('h1');
+heading.innerText = "Etch - A - Sketch";
+container.appendChild(heading);
 
 //create  button container
 const buttonsContainer = document.createElement("div");
@@ -20,6 +23,16 @@ buttonsContainer.className = 'buttons';
 buttonsContainer.getElementsByClassName('buttons');
 
 body.appendChild(buttonsContainer);
+
+//create color picker
+const colorPicker = document.createElement('input');
+colorPicker.type = "color";
+colorPicker.classList.add("color-picker");
+colorPicker.getElementsByClassName("color-picker");
+
+//add color picker to button container and to main container
+buttonsContainer.appendChild(colorPicker);
+container.appendChild(buttonsContainer);
 
 //create reset button
 const reset = document.createElement("input");
@@ -43,16 +56,6 @@ container.appendChild(buttonsContainer);
 
 //add rainbow button to buttons container
 buttonsContainer.appendChild(rainbow);
-container.appendChild(buttonsContainer);
-
-//create color picker
-const colorPicker = document.createElement('input');
-colorPicker.type = "color";
-colorPicker.classList.add("color-picker");
-colorPicker.getElementsByClassName("color-picker");
-
-//add color picker to button container and to main container
-buttonsContainer.appendChild(colorPicker);
 container.appendChild(buttonsContainer);
 
 //add eraser button
