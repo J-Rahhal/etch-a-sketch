@@ -113,10 +113,11 @@ function createCols(col) {
 
 // create grid function which will have both and give it an input but set
 //a default value
-function grid(input = 16){
-    input = parseInt(prompt('Enter a number of rows'));
+function grid(){
+    let input = parseInt(prompt('Enter a number of rows'));
     if(input<1 || input>64){
         alert('Please enter a number of rows between 1 and 64');
+        location.reload();
     }else{
         createRows(input);
         createCols(input);
