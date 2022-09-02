@@ -72,7 +72,23 @@ container.appendChild(buttonsContainer);
 //add eraser event Listener
 eraser.addEventListener('click',erase);
 
+//create resize button
+const resize = document.createElement("input");
+resize.type = "button";
+resize.value = "resize";
+resize.className = 'resize';
+resize.getElementsByClassName('resize');
 
+//add resize button into container
+buttonsContainer.appendChild(resize);
+
+//add event listener to resize
+resize.addEventListener('click',()=>{
+    location.reload();
+});
+
+
+//add resize event Listener
 //create row function which will create the row divs
 function createRows(row) {
     for(let i =0; i < row; i++) {
@@ -98,6 +114,10 @@ function createCols(col) {
 // create grid function which will have both and give it an input but set
 //a default value
 function grid(input = 16){
+    input = parseInt(prompt('Enter a number of rows'));
+    if(input<1 || input>64){
+        alert('Please enter a number of rows between 1 and 64');
+    }
     createRows(input);
     createCols(input);
 }
