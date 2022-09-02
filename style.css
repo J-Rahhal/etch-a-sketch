@@ -27,19 +27,20 @@ h1{
 }
 
 .container {
-    height: 90vh;
+    height: 70%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 50px;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(var(--size), 2fr);
     grid-template-rows: repeat(var(--size), 2fr);
-    height: 500px;
-    width: 500px;
+    height: 400px;
+    width: 400px;
     border: 40px solid darkred;
     border-radius: 20px;
     background-color: white;
@@ -107,4 +108,26 @@ input[type="button"]:hover, input[type="color"]:hover {
 
 .erase {
     background-color: var(--eraser-color);
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.link{
+    color:rgb(238, 227, 227);
+    margin-left: 10px;
+    text-decoration: none;
+
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+i {
+    font-size: 30px;
 }

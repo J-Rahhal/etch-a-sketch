@@ -108,6 +108,24 @@ resize.addEventListener('click', () => {
     location.reload();
 });
 
+//create footer
+const footer = document.createElement('div');
+footer.classList.add('footer');
+body.appendChild(footer);
+
+//add image to footer link
+const icon = document.createElement('i');
+icon.classList.add('fa-brands');
+icon.classList.add('fa-github');
+footer.appendChild(icon);
+
+//create link
+const link = document.createElement('a');
+link.href = 'https://github.com/dev-acc-practice/etch-a-sketch';
+link.innerText= 'GitHub';
+link.target= 'blank';
+link.classList.add('link');
+footer.appendChild(link);
 
 // create grid function which will have both and give it an input but set
 //a default value
