@@ -1,21 +1,34 @@
 //select body
 const body = document.querySelector('body');
-//select container
-let container = document.getElementById('container');
-//create a grid container to add rows and columns
-const grid_container = document.createElement('div');
-//give grid id
-grid_container.className= 'grid';
-//select grid container
-grid_container.getElementsByClassName('grid');
-//select rows
-const grid_rows = document.getElementsByClassName('rows');
-//select columns
-const grid_cols = document.getElementsByClassName('cols');
+//grab root
+const root = document.querySelector(':root');
+
+//creater header
+const header = document.createElement('header');
+header.classList.add('header');
+header.getElementsByClassName('header');
+
 //create heading
 const heading = document.createElement('h1');
 heading.innerText = "Etch - A - Sketch";
-container.appendChild(heading);
+header.appendChild(heading);
+body.appendChild(header);
+
+//create and select container
+let container = document.createElement('div');
+container.classList.add('container');
+container.getElementsByClassName('container');
+body.append(container);
+//create a grid container to add rows and columns
+const grid_container = document.createElement('div');
+//give grid id
+grid_container.className = 'grid';
+//select grid container
+grid_container.getElementsByClassName('grid');
+container.appendChild(grid_container);
+
+//select columns
+const cells = document.getElementsByClassName('cell');
 
 //create  button container
 const buttonsContainer = document.createElement("div");
@@ -23,6 +36,14 @@ buttonsContainer.className = 'buttons';
 buttonsContainer.getElementsByClassName('buttons');
 
 body.appendChild(buttonsContainer);
+
+//create header for buttons
+const h3 = document.createElement('h3');
+h3.classList.add('buttons-header');
+h3.getElementsByClassName('h3');
+h3.innerText = "Options";
+h3.style.color = 'rgb(238, 227, 227)';
+buttonsContainer.appendChild(h3);
 
 //create color picker
 const colorPicker = document.createElement('input');
@@ -48,7 +69,7 @@ rainbow.type = "button";
 rainbow.value = "rainbow";
 rainbow.className = 'rainbow';
 rainbow.getElementsByClassName('rainbow');
-rainbow.addEventListener('click',rainbowColors);
+rainbow.addEventListener('click', rainbowColors);
 
 //add reset button into container
 buttonsContainer.appendChild(reset);
@@ -70,7 +91,7 @@ buttonsContainer.appendChild(eraser);
 container.appendChild(buttonsContainer);
 
 //add eraser event Listener
-eraser.addEventListener('click',erase);
+eraser.addEventListener('click', erase);
 
 //create resize button
 const resize = document.createElement("input");
@@ -83,74 +104,47 @@ resize.getElementsByClassName('resize');
 buttonsContainer.appendChild(resize);
 
 //add event listener to resize
-resize.addEventListener('click',()=>{
+resize.addEventListener('click', () => {
     location.reload();
 });
 
 
-//add resize event Listener
-//create row function which will create the row divs
-function createRows(row) {
-    for(let i =0; i < row; i++) {
-        const  rows = document.createElement('div');
-        rows.setAttribute('class', 'rows');
-        grid_container.appendChild(rows);
-        container.appendChild(grid_container);
-    }
-}
-
-
-//create column function which will create the column divs
-function createCols(col) {
-   for(let i=0; i<grid_rows.length; i++) {
-    for(let j=0; j<col; j++){
-        const  cols = document.createElement('div');
-        cols.className = 'cols';
-        grid_rows[j].appendChild(cols);
-    }
-   }
-}
-
 // create grid function which will have both and give it an input but set
 //a default value
-function grid(){
+function grid() {
     let input = parseInt(prompt('Enter a number of rows'));
-    if(input<1 || input>64){
-        alert('Please enter a number of rows between 1 and 64');
+    if (input < 1 || input > 100) {
+        alert('Please enter a number of rows between 1 and 100: ');
         location.reload();
-    }else{
-        createRows(input);
-        createCols(input);
+    } else {
+        root.style.setProperty('--size', input);
+        for (let i = 0; i < Math.pow(input, 2); i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.getElementsByClassName('cell');
+            grid_container.appendChild(cell);
+            cell.addEventListener('mouseover', () => {
+                cell.classList.add('selected');
+            });
+        }
     }
-
 }
 
 //call function
 grid();
 
-//create the draw function
-function draw() {
-    for (let i =0; i<grid_cols.length; i++) {
-        grid_cols[i].addEventListener("mouseover", ()=>{
-            grid_cols[i].classList.add("selected");
-        });
-    }
-}
-
-//call function draw
-draw();
 
 
 //create function clear
 function clear() {
-    for (let i =0; i<grid_cols.length; i++) {
-        grid_cols[i].style ="none";
-        grid_cols[i].classList.remove("selected");
-        grid_cols[i].addEventListener("mouseover", ()=>{
-            grid_cols[i].classList.remove("rainbow-colors");
-            grid_cols[i].classList.add("selected");
-            grid_cols[i].classList.remove('colors');
-            grid_cols[i].classList.remove('erase');
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].style = "none";
+        cells[i].classList.remove("selected");
+        cells[i].addEventListener("mouseover", () => {
+            cells[i].classList.remove("rainbow-colors");
+            cells[i].classList.add("selected");
+            cells[i].classList.remove('colors');
+            cells[i].classList.remove('erase');
 
         });
     }
@@ -159,42 +153,42 @@ function clear() {
 }
 
 // create rainbow colors function
-function  rainbowColors(){
-    for(let i =0; i < grid_cols.length; i++){
-        grid_cols[i].addEventListener("mouseover", ()=>{
-            grid_cols[i].classList.add("rainbow-colors");
-            grid_cols[i].classList.remove('colors');
-            grid_cols[i].classList.remove('erase');
-            grid_cols[i].style.setProperty('--mouse-x', Math.floor(Math.random()*255));
-            grid_cols[i].style.setProperty('--mouse-y', Math.floor(Math.random()*255));
-    });
+function rainbowColors() {
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener("mouseover", () => {
+            cells[i].classList.add("rainbow-colors");
+            cells[i].classList.remove('colors');
+            cells[i].classList.remove('erase');
+            cells[i].style.setProperty('--mouse-x', Math.floor(Math.random() * 255));
+            cells[i].style.setProperty('--mouse-y', Math.floor(Math.random() * 255));
+        });
 
-  }
+    }
 }
 
 //add event Listener to color picker
 colorPicker.addEventListener('change', chooseColor);
 
 //create function chooseColor()
-function chooseColor()  {
-    let color =colorPicker.value;
-    for(let i = 0; i <grid_cols.length; i++) {
-        grid_cols[i].addEventListener('mouseover', ()=>{
-            grid_cols[i].classList.add('colors');
-            grid_cols[i].classList.remove('erase');
-            grid_cols[i].style.setProperty('--color-picker-value', color);
+function chooseColor() {
+    let color = colorPicker.value;
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener('mouseover', () => {
+            cells[i].classList.add('colors');
+            cells[i].classList.remove('erase');
+            cells[i].style.setProperty('--color-picker-value', color);
         });
     }
 }
 
 //create function erase
-function erase(){
-    let color ="#FFFFFF";
-    for(let i=0; i<grid_cols.length; i++){
-        grid_cols[i].addEventListener("mouseover",()=>{
+function erase() {
+    let color = "#FFFFFF";
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener("mouseover", () => {
 
-            grid_cols[i].classList.add('erase');
-            grid_cols[i].style.setProperty('--eraser-color', color);
+            cells[i].classList.add('erase');
+            cells[i].style.setProperty('--eraser-color', color);
         });
     }
 }
