@@ -117,9 +117,11 @@ function grid(input = 16){
     input = parseInt(prompt('Enter a number of rows'));
     if(input<1 || input>64){
         alert('Please enter a number of rows between 1 and 64');
+    }else{
+        createRows(input);
+        createCols(input);
     }
-    createRows(input);
-    createCols(input);
+
 }
 
 //call function
